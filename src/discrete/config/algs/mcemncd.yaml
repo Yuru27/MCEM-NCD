@@ -1,0 +1,41 @@
+action_selector: "multinomial"
+epsilon_start: .5
+epsilon_finish: .0
+epsilon_anneal_time: 100000
+mask_before_softmax: True
+
+mac: 'mcemncd_mac'
+
+runner: "parallel"
+batch_size_run: 1
+buffer_size: 1
+batch_size: 1
+
+off_buffer_size: 5000
+off_batch_size: 32
+# run: "off"
+
+# update the target network every {} episodes
+target_update_interval: 200
+
+learner: "mcemncd_learner"
+mixer: "qmix"
+mixing_embed_dim: 32
+hypernet_layers: 2
+hypernet_embed: 64
+critic_hidden_dim: 256
+
+lr: 0.0015
+critic_lr: 0.0005
+lambd: 0.6
+tb_lambda: 1.0
+entropy_coef: 0.1
+optimizer: 'adam' #'rmsprop' #'adam'
+abs: True # monotonicity condition
+
+
+save_probs: True
+agent_output_type: "pi_logits"
+name: "mcemncd"
+num_sampling: 10
+topk: 1
